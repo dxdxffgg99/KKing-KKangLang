@@ -65,6 +65,10 @@
       outEl.textContent = '실행 중...';
       try{
         if(mode === 'encode'){
+          if(input.includes(START_DELIM) && input.includes(END_DELIM)){
+            outEl.textContent = '오류: 이미 인코딩된 문자열로 보입니다. 다시 인코딩할 수 없습니다.';
+            return;
+          }
           const bytes = utf8ToBytes(input);
           outEl.textContent = bytes_to_custom_tokens(bytes);
         } else {
